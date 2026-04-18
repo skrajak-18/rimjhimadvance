@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Our Treatments | Rimjhim Advance Chiropractic</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <meta name="description" content="Explore our advanced non-surgical treatments including whole-body alignment, slip disc care, sciatica relief, and CP child therapy at Rimjhim Chiropractic.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================================
+           GLOBAL & REUSED STYLES
+           ======================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Poppins', sans-serif; color: #444; background-color: #ffffff; overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
+
+        /* Mobile Menu Styles */
+        @media (max-width: 850px) {
+            .mobile-menu-btn { display: block !important; }
+            .desktop-btn { display: none !important; }
+            .nav-links-container {
+                position: absolute !important; top: 85px !important; left: 0 !important; width: 100% !important;
+                background: #ffffff !important; flex-direction: column !important; gap: 20px !important;
+                padding: 25px 0 !important; box-shadow: 0 10px 15px rgba(0,0,0,0.05) !important;
+                opacity: 0; visibility: hidden; transform: translateY(-15px); display: flex !important; 
+                transition: all 0.3s ease-in-out;
+            }
+            .nav-links-container.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        }
+        .nav-links-container { transition: all 0.3s ease-in-out; }
+
+        /* Global Reveal Animation */
+        .reveal-item {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal-item.visible { opacity: 1; transform: translateY(0); }
+
+        /* ========================================================
+           SERVICES PAGE SPECIFIC STYLES
+           ======================================================== */
+        /* 1. Page Hero */
+        .page-hero {
+            position: relative;
+            padding: 140px 20px 80px 20px;
+            background: linear-gradient(rgba(0, 128, 128, 0.85), rgba(0, 75, 135, 0.85)), url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            text-align: center;
+            color: #ffffff;
+        }
+        .page-hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 15px; line-height: 1.2; }
+        .page-hero p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
+
+        /* 2. Services Grid Layout */
+        .services-modern { padding: 100px 20px; background-color: #f4f9f8; }
+        .services-grid { max-width: 1250px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
+
+        /* Premium Card Design */
+        .service-card-pro {
+            background: #ffffff; border-radius: 16px; padding: 35px 25px 25px 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); border: 1px solid rgba(0, 128, 128, 0.1);
+            position: relative; display: flex; flex-direction: column;
+        }
+        .service-card-pro:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 75, 135, 0.1); border-color: rgba(0, 128, 128, 0.3); }
+
+        /* SVG Icon Container */
+        .service-icon-wrapper {
+            width: 70px; height: 70px; background: linear-gradient(135deg, #e6f9f5 0%, #cbf0e8 100%);
+            border-radius: 16px; display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px; transition: transform 0.4s ease, background 0.4s ease; color: #008080;
+        }
+        .service-card-pro:hover .service-icon-wrapper {
+            transform: scale(1.1) rotate(5deg); background: linear-gradient(135deg, #008080 0%, #004b87 100%); color: #ffffff;
+        }
+
+        /* Content Area */
+        .service-card-pro h3 { color: #004b87; font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+        .service-card-pro p { color: #666666; font-size: 0.9rem; line-height: 1.5; margin-bottom: 15px; }
+        
+        .service-list { list-style: none; padding: 0; margin: 0 0 25px 0; flex-grow: 1; }
+        .service-list li { font-size: 0.85rem; color: #555555; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; }
+        .service-list li::before { content: '✓'; color: #008080; font-weight: bold; font-size: 0.9rem; }
+
+        /* Button */
+        .card-actions { display: flex; margin-top: auto; }
+        .btn-solid {
+            width: 100%; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none;
+            font-weight: 600; font-size: 0.95rem; color: #ffffff; background: #008080; border: 2px solid #008080;
+            transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-solid:hover { background: #004b87; border-color: #004b87; box-shadow: 0 4px 15px rgba(0, 75, 135, 0.3); }
+
+        /* 3. Bottom CTA Section */
+        .bottom-cta {
+            background: linear-gradient(135deg, #004b87 0%, #008080 100%);
+            padding: 80px 20px; text-align: center; color: #ffffff;
+        }
+        .bottom-cta h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; }
+        .bottom-cta p { font-size: 1.1rem; max-width: 600px; margin: 0 auto 30px auto; opacity: 0.9; }
+        .cta-btn {
+            background-color: #ffffff; color: #004b87; padding: 15px 35px; border-radius: 50px;
+            text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease;
+        }
+        .cta-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.25); }
+
+        /* ========================================================
+           FOOTER STYLES (Copied from Global)
+           ======================================================== */
+        .footer-pro { background-color: #f4f9fc; padding: 80px 20px 0 20px; font-family: 'Poppins', sans-serif; color: #4a5568; border-top: 1px solid #e2e8f0; }
+        .footer-grid-pro { max-width: 1250px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr 1fr 1fr; gap: 40px; padding-bottom: 50px; }
+        .footer-brand { display: flex; flex-direction: column; gap: 15px; }
+        .footer-logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .footer-logo-area img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; }
+        .footer-logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .footer-logo-text span.name { font-size: 1.2rem; font-weight: 700; color: #004b87; }
+        .footer-logo-text span.sub { font-size: 0.8rem; font-weight: 500; color: #64748b; }
+        .footer-brand p { font-size: 0.9rem; line-height: 1.6; color: #4a5568; }
+        .trust-badge { display: flex; align-items: center; gap: 6px; color: #0077b6; font-size: 0.85rem; font-weight: 500; }
+        .trust-badge svg { width: 16px; height: 16px; fill: currentColor; }
+        .social-circles { display: flex; gap: 12px; }
+        .social-circles a { width: 36px; height: 36px; background-color: #0077b6; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease; }
+        .footer-col-title { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 20px; }
+        .footer-links { list-style: none; padding: 0; margin: 0 0 30px 0; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { text-decoration: none; color: #64748b; font-size: 0.9rem; transition: color 0.3s ease; }
+        .footer-links a:hover { color: #0077b6; font-weight: 500; }
+        .clinic-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
+        .clinic-item svg { width: 20px; height: 20px; color: #0077b6; flex-shrink: 0; margin-top: 2px; }
+        .clinic-info h4 { font-size: 0.9rem; font-weight: 600; color: #334155; margin: 0 0 4px 0; }
+        .clinic-info p { font-size: 0.85rem; color: #64748b; margin: 0; line-height: 1.5; }
+        .mini-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+        .mini-stat-card { border-radius: 12px; padding: 15px 10px; text-align: center; border: 1px solid rgba(0,0,0,0.03); }
+        .stat-blue { background-color: #f0f7ff; color: #0077b6; }
+        .stat-green { background-color: #f0fff4; color: #16a34a; }
+        .stat-yellow { background-color: #fffdf0; color: #d97706; }
+        .stat-purple { background-color: #faf5ff; color: #9333ea; }
+        .mini-stat-card h4 { font-size: 1.2rem; font-weight: 700; margin: 0 0 2px 0; }
+        .mini-stat-card p { font-size: 0.7rem; font-weight: 500; margin: 0; }
+        .footer-btn { display: block; width: 100%; background-color: #0077b6; color: #ffffff; text-align: center; padding: 12px; border-radius: 6px; font-weight: 600; font-size: 0.95rem; text-decoration: none; margin-bottom: 20px; }
+        .footer-contact-item { display: flex; align-items: center; gap: 10px; color: #64748b; font-size: 0.85rem; margin-bottom: 12px; }
+        .footer-contact-item svg { width: 16px; height: 16px; color: #0077b6; }
+        .footer-bottom-bar { border-top: 1px solid #e2e8f0; padding: 20px; }
+        .footer-bottom-container { max-width: 1250px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .footer-bottom-container p { font-size: 0.85rem; color: #64748b; margin: 0; }
+        @media (max-width: 1024px) { .footer-grid-pro { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 600px) { .footer-grid-pro { grid-template-columns: 1fr; gap: 30px; } .footer-bottom-container { flex-direction: column; text-align: center; } }
+    </style>
+</head>
+<body>
+
+    <div style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#ffffff; box-shadow:0 -4px 15px rgba(0,0,0,0.08); justify-content:space-around; align-items:center; padding:10px 0; z-index:9999; font-family: 'Poppins', sans-serif;" id="mobileBar">
+       <a href="https://wa.me/918051816776" target="_blank" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+    <svg style="width: 26px; height: 26px; color: #25D366;" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.405-.881-.733-1.476-1.639-1.649-1.937-.173-.298-.019-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+    </svg>
+    <span>WhatsApp</span>
+</a>
+        <a href="tel:+917488880860" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+            <svg style="width: 26px; height: 26px; color: #28a745;" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span>Call </span>
+        </a>
+        <a href="https://www.instagram.com/rimjhim_advance_chiropractic" target="_blank" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+            <svg style="width: 26px; height: 26px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/share/18TpDo9d4g/" target="_blank" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+            <svg style="width: 26px; height: 26px;" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span>Facebook</span>
+        </a>
+        <a href="https://youtube.com/@rimjhim_advance_chiropractic" target="_blank" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+            <svg style="width: 26px; height: 26px;" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span>YouTube</span>
+        </a>
+    </div>
+
+    <header style="position: fixed; top: 0; left: 0; width: 100%; background-color: #ffffff; box-shadow: 0 4px 20px rgba(0,0,0,0.06); z-index: 1000; box-sizing: border-box;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; height: 85px; box-sizing: border-box;">
+            <a href="index.html" style="display: flex; align-items: center; gap: 15px; text-decoration: none;">
+                <img src="logo.png" alt="Rimjhim Logo" style="height: 55px; width: 55px; border-radius: 50%; object-fit: cover; border: 2px solid #e6f9f5; box-shadow: 0 4px 10px rgba(0, 128, 128, 0.15);">
+                <div style="display: flex; flex-direction: column; justify-content: center; line-height: 1.2;">
+                    <span style="font-size: 1.25rem; font-weight: 700; color: #004b87; letter-spacing: 0.5px;">Rimjhim Advance</span>
+                    <span style="font-size: 0.85rem; font-weight: 600; color: #008080; text-transform: uppercase; letter-spacing: 1.5px;">Chiropractic</span>
+                </div>
+            </a>
+
+            <div id="menuBtn" class="mobile-menu-btn" onclick="toggleMenu()" style="display: none; font-size: 28px; cursor: pointer; color: #004b87; transition: transform 0.3s ease;">☰</div>
+
+            <nav id="navLinks" class="nav-links-container" style="display: flex; gap: 30px; align-items: center;">
+                <a href="index.html" style="text-decoration: none; color: #444444; font-weight: 500; font-size: 1rem; transition: color 0.3s ease;">Home</a>
+                <a href="about.html" style="text-decoration: none; color: #444444; font-weight: 500; font-size: 1rem; transition: color 0.3s ease;">About Us</a>
+                <a href="services.html" style="text-decoration: none; color: #008080; font-weight: 700; font-size: 1rem; transition: color 0.3s ease;">Services</a>
+                <a href="gallery.html" style="text-decoration: none; color: #444444; font-weight: 500; font-size: 1rem; transition: color 0.3s ease;">Gallery</a>
+                <a href="contact.html" style="text-decoration: none; color: #444444; font-weight: 500; font-size: 1rem; transition: color 0.3s ease;">Contact</a>
+            </nav>
+
+            <a href="contact.html" class="desktop-btn" style="background-color: #008080; color: #ffffff; padding: 12px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(0, 128, 128, 0.25); transition: background-color 0.3s ease;">
+                Contact Us
+            </a>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <h1 class="reveal-item">Our Treatments</h1>
+        <p class="reveal-item" style="transition-delay: 0.1s;">Advanced, non-surgical chiropractic care tailored perfectly to your body's unique needs. Experience the science of healing.</p>
+    </section>
+
+    <section class="services-modern">
+        <div class="services-grid">
+            
+            <div class="service-card-pro reveal-item">
+                <div class="service-icon-wrapper">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path><path d="M5 8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2"></path><path d="M12 10v12"></path><path d="M8 22l4-12 4 12"></path></svg>
+                </div>
+                <h3>Whole Body Alignment</h3>
+                <p>Complete musculoskeletal balancing.</p>
+                <ul class="service-list">
+                    <li>Whole body joint alignment</li>
+                    <li>Top to bottom posture correction</li>
+                    <li>Nerve system reset</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="contact.html" class="btn-solid">Contact Us <span>➔</span></a>
+                </div>
+            </div>
+
+            <div class="service-card-pro reveal-item">
+                <div class="service-icon-wrapper">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2 8 8l2 2-6 6-4-4"></path><path d="M14 2l6 6"></path><path d="M22 10l-6-6"></path></svg>
+                </div>
+                <h3>Upper Extremity</h3>
+                <p>Shoulder, Clavicle, Scapula, Elbow, Wrist, Fingers.</p>
+                <ul class="service-list">
+                    <li>Pain from neck to arm or fingers</li>
+                    <li>Tingling/numbness & weak grip</li>
+                    <li>Tennis Elbow & Joint stiffness</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="contact.html" class="btn-solid">Contact Us <span>➔</span></a>
+                </div>
+            </div>
+
+            <div class="service-card-pro reveal-item">
+                <div class="service-icon-wrapper">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"></path><path d="M8 12h8"></path><path d="M6 22h12"></path><path d="M10 2h4"></path></svg>
+                </div>
+                <h3>Lower Extremity</h3>
+                <p>Pelvis, Hip joint, Knee, Ankle, Foot.</p>
+                <ul class="service-list">
+                    <li>Morning stiffness & Sciatica</li>
+                    <li>Heel pain & Plantar fasciitis</li>
+                    <li>Arthritis & Knee swelling</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="contact.html" class="btn-solid">Contact Us <span>➔</span></a>
+                </div>
+            </div>
+
+            <div class="service-card-pro reveal-item">
+                <div class="service-icon-wrapper">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"></path><line x1="9" y1="6" x2="15" y2="6"></line><line x1="8" y1="12" x2="16" y2="12"></line><line x1="9" y1="18" x2="15" y2="18"></line></svg>
+                </div>
+                <h3>Spine Treatments</h3>
+                <p>Cervical, Thoracic, Lumbar, Sacrum, Coccyx.</p>
+                <ul class="service-list">
+                    <li>Neck, mid-back, or lower back pain</li>
+                    <li>Scoliosis, Kyphosis, Lordosis</li>
+                    <li>Muscle spasms & difficulty bending</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="contact.html" class="btn-solid">Contact Us <span>➔</span></a>
+                </div>
+            </div>
+
+            <div class="service-card-pro reveal-item">
+                <div class="service-icon-wrapper">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </div>
+                <h3>Sleep Apnea</h3>
+                <p>Comprehensive daytime and nighttime relief.</p>
+                <ul class="service-list">
+                    <li>Loud Snoring & Breathing Pauses</li>
+                    <li>Excessive Daytime Sleepiness</li>
+                    <li>Morning Headaches & Fatigue</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="contact.html" class="btn-solid">Contact Us <span>➔</span></a>
+                </div>
+            </div>
+
+            <div class="service-card-pro reveal-item">
+                <div class="service-icon-wrapper">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                </div>
+                <h3>Body & Vascular Issues</h3>
+                <p>Holistic visceral and vascular care.</p>
+                <ul class="service-list">
+                    <li>Gas, Acidity, Reflux, IBS</li>
+                    <li>Constipation & Bloating</li>
+                    <li>Naval-Dis-balance</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="contact.html" class="btn-solid">Contact Us <span>➔</span></a>
+                </div>
+            </div>
+
+            <div class="service-card-pro reveal-item">
+                <div class="service-icon-wrapper">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                </div>
+                <h3>Head & Face Issues</h3>
+                <p>Cranial and facial nerve therapies.</p>
+                <ul class="service-list">
+                    <li>Headaches & Migraines</li>
+                    <li>Sinusitis, DNS & TMJ Issues</li>
+                    <li>Anxiety, Blurred vision & Hearing loss</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="contact.html" class="btn-solid">Contact Us <span>➔</span></a>
+                </div>
+            </div>
+
+            <div class="service-card-pro reveal-item">
+                <div class="service-icon-wrapper">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                </div>
+                <h3>Muscular Atrophy</h3>
+                <p>Regaining strength and muscle mass.</p>
+                <ul class="service-list">
+                    <li>Treating visible decrease in muscle size</li>
+                    <li>Correcting muscle asymmetry</li>
+                    <li>Relief from premature twitching</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="contact.html" class="btn-solid">Contact Us <span>➔</span></a>
+                </div>
+            </div>
+
+            <div class="service-card-pro reveal-item">
+                <div class="service-icon-wrapper">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5c-1.6 0-3 1.4-3 3v1"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <h3>C.P. Child Therapy</h3>
+                <p>Specialized pediatric rehabilitation.</p>
+                <ul class="service-list">
+                    <li>Therapy for Muscle Weakness</li>
+                    <li>Improving Poor Motor Control</li>
+                    <li>Treating Delayed Development</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="contact.html" class="btn-solid">Contact Us <span>➔</span></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<style>
+    .other-services-section {
+        padding: 100px 20px;
+        background-color: #ffffff; /* Clean white background */
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .os-container {
+        max-width: 1250px;
+        margin: 0 auto;
+    }
+
+    /* Header Styles matching reference */
+    .os-header {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 50px auto;
+    }
+
+    .os-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #eef8ff; /* Very soft blue */
+        color: #004b87;
+        font-weight: 600;
+        padding: 8px 20px;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    .os-badge svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .os-header h2 {
+        color: #1a1a1a;
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin: 0 0 15px 0;
+        letter-spacing: -0.5px;
+    }
+
+    .os-header p {
+        color: #666666;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    /* Grid Layout */
+    .os-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+    }
+
+    /* Individual Service Card */
+    .os-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 40px 20px;
+        text-align: center;
+        border: 1px solid rgba(0, 75, 135, 0.08); /* Subtle blue border */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        
+        /* Animation */
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .os-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0, 75, 135, 0.1);
+        border-color: rgba(0, 75, 135, 0.2);
+    }
+
+    /* Icon Styling */
+    .os-icon {
+        width: 65px;
+        height: 65px;
+        background: #f4f9fc;
+        color: #004b87; /* Primary dark blue from your theme */
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        transition: all 0.4s ease;
+    }
+
+    .os-icon svg {
+        width: 32px;
+        height: 32px;
+        stroke-width: 2;
+    }
+
+    .os-card:hover .os-icon {
+        background: #004b87;
+        color: #ffffff;
+        transform: scale(1.1);
+    }
+
+    /* Card Text */
+    .os-card h3 {
+        color: #333333;
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin: 0;
+        line-height: 1.4;
+    }
+    
+    @media (max-width: 768px) {
+        .os-header h2 { font-size: 2.2rem; }
+    }
+</style>
+
+<section class="other-services-section">
+    <div class="os-container">
+        
+        <div class="os-header">
+            <div class="os-badge reveal-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                Comprehensive Care
+            </div>
+            <h2 class="reveal-item" style="transition-delay: 0.1s;">Our Other Services</h2>
+            <p class="reveal-item" style="transition-delay: 0.2s;">In addition to expert chiropractic care, we offer a wide range of complementary treatments to support your complete recovery and well-being.</p>
+        </div>
+
+        <div class="os-grid">
+            
+            <div class="os-card reveal-item" style="transition-delay: 0.1s;">
+                <div class="os-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                </div>
+                <h3>Physiotherapy rehabilitation</h3>
+            </div>
+
+            <div class="os-card reveal-item" style="transition-delay: 0.2s;">
+                <div class="os-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                </div>
+                <h3>Sport injury</h3>
+            </div>
+
+            <div class="os-card reveal-item" style="transition-delay: 0.3s;">
+                <div class="os-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5 .5.5 0 0 1 .5.5 2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5l7-7z"></path></svg>
+                </div>
+                <h3>Massage therapy</h3>
+            </div>
+
+            <div class="os-card reveal-item" style="transition-delay: 0.4s;">
+                <div class="os-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                </div>
+                <h3>Diagnostic services</h3>
+            </div>
+
+            <div class="os-card reveal-item" style="transition-delay: 0.1s;">
+                <div class="os-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"></path><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"></path></svg>
+                </div>
+                <h3>Kinesiology therapy</h3>
+            </div>
+
+            <div class="os-card reveal-item" style="transition-delay: 0.2s;">
+                <div class="os-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"></path><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"></path></svg>
+                </div>
+                <h3>Neurotherapy</h3>
+            </div>
+
+            <div class="os-card reveal-item" style="transition-delay: 0.3s;">
+                <div class="os-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                </div>
+                <h3>Dietician consultant</h3>
+            </div>
+
+            <div class="os-card reveal-item" style="transition-delay: 0.4s;">
+                <div class="os-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </div>
+                <h3>Online consultation<br>(for advice)</h3>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+    <section class="bottom-cta">
+        <h2 class="reveal-item">Ready to start your pain-free life?</h2>
+        <p class="reveal-item" style="transition-delay: 0.1s;">Don't let joint or spinal pain limit your potential. Get a personalized diagnosis and treatment plan from the experts.</p>
+        <a href="contact.html" class="cta-btn reveal-item" style="transition-delay: 0.2s;">Book Your Consultation Now</a>
+    </section>
+
+    <footer class="footer-pro">
+        <div class="footer-grid-pro">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo-area">
+                    <img src="logo.png" alt="Rimjhim Chiropractic Logo">
+                    <div class="footer-logo-text">
+                        <span class="name">Dr. Manoj Kumar Pandit</span>
+                        <span class="sub">Spine Specialist | Chiropractor</span>
+                    </div>
+                </a>
+                <p>Revolutionary chiropractic treatments combined with advanced physiotherapy techniques. Transform your life with our personalized healing approach.</p>
+                <div class="trust-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    India's Most Trusted Chiropractic Care
+                </div>
+                <div class="social-circles" style="margin-top: 10px;">
+                    <a href="https://www.facebook.com/share/18TpDo9d4g/" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="tel:+918051816776"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
+                    <a href="https://www.instagram.com/rimjhim_advance_chiropractic" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    <a href="https://youtube.com/@rimjhim_advance_chiropractic" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                </div>
+            </div>
+
+            <div>
+                <div class="footer-col-title">Quick Links</div>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html" style="color:#0077b6; font-weight:600;">Treatments</a></li>
+                    <li><a href="index.html#gallery">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="footer-col-title">Our Clinic</div>
+                <div class="clinic-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <div class="clinic-info">
+                        <h4>Rimjhim Advance Chiropractic</h4>
+                        <p>Sadhwara Chowk, Araila - Sadhwara Road<br>Darbhanga, Bihar 847106</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="footer-col-title">Statistics</div>
+                <div class="mini-stats-grid">
+                    <div class="mini-stat-card stat-blue"><h4>5+</h4><p>Years Exp.</p></div>
+                    <div class="mini-stat-card stat-green"><h4>98%</h4><p>Success</p></div>
+                    <div class="mini-stat-card stat-yellow"><h4>1500+</h4><p>Patients</p></div>
+                    <div class="mini-stat-card stat-purple"><h4>1</h4><p>Location</p></div>
+                </div>
+                <a href="contact.html" class="footer-btn">Contact Us</a>
+                <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> +91-8051816776</div>
+                 <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> +91-7488880860</div>
+                <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> rcmmanoj31539866@gmail.com</div>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 Rimjhim Advance Chiropractic. All rights reserved.</p>
+                <p>Designed by <a href="#" target="_blank">Mr. Satyam Kumar</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Mobile Menu Logic
+        const nav = document.getElementById("navLinks");
+        const menuBtn = document.getElementById("menuBtn");
+        
+        function toggleMenu() {
+            nav.classList.toggle("active");
+            if (nav.classList.contains("active")) {
+                menuBtn.innerHTML = "✕";
+                menuBtn.style.transform = "rotate(90deg)";
+            } else {
+                menuBtn.innerHTML = "☰";
+                menuBtn.style.transform = "rotate(0deg)";
+            }
+        }
+
+        // 2. Scroll Reveal Animation Logic (Staggered Effect for Cards)
+        document.addEventListener("DOMContentLoaded", () => {
+            const revealElements = document.querySelectorAll('.reveal-item');
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, (index % 10) * 100); // 100ms delay per card for staggered wave effect
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, threshold: 0.1 });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+            
+            // 3. Mobile Bottom Bar Logic
+            function checkMobile() {
+                var bar = document.getElementById("mobileBar");
+                if (window.innerWidth <= 768) { bar.style.display = "flex"; } 
+                else { bar.style.display = "none"; }
+            }
+            checkMobile();
+            window.addEventListener("resize", checkMobile);
+        });
+    </script>
+</body>
+</html>

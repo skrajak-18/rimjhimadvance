@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>About Us | Rimjhim Advance Chiropractic</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <meta name="description" content="Learn about Dr. Manoj Kumar Pandit and the mission of Rimjhim Advance Chiropractic clinic. We provide holistic, non-surgical spine and joint care in India.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ========================================================
+           GLOBAL & REUSED STYLES (Header, Mobile Bar, Basic Resets)
+           ======================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Poppins', sans-serif; color: #444; background-color: #ffffff; overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
+
+        /* Mobile Menu Styles */
+        @media (max-width: 850px) {
+            .mobile-menu-btn { display: block !important; }
+            .desktop-btn { display: none !important; }
+            .nav-links-container {
+                position: absolute !important;
+                top: 85px !important;
+                left: 0 !important;
+                width: 100% !important;
+                background: #ffffff !important;
+                flex-direction: column !important;
+                gap: 20px !important;
+                padding: 25px 0 !important;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05) !important;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-15px);
+                display: flex !important; 
+                transition: all 0.3s ease-in-out;
+            }
+            .nav-links-container.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+        }
+        .nav-links-container { transition: all 0.3s ease-in-out; }
+
+        /* ========================================================
+           ABOUT PAGE SPECIFIC STYLES
+           ======================================================== */
+        /* 1. Page Hero */
+        .page-hero {
+            position: relative;
+            padding: 140px 20px 80px 20px;
+            background: linear-gradient(rgba(0, 75, 135, 0.85), rgba(0, 128, 128, 0.85)), url('https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            text-align: center;
+            color: #ffffff;
+        }
+        .page-hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 15px; }
+        .page-hero p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
+
+        /* 2. Doctor Deep Dive Section */
+        .founder-section { padding: 100px 20px; background-color: #fcfdfd; }
+        .founder-container {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center;
+        }
+        .founder-img-wrapper { position: relative; }
+        .founder-img {
+            width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,75,135,0.15);
+            border: 5px solid #ffffff; z-index: 2; position: relative;
+        }
+        .founder-exp-badge {
+            position: absolute; bottom: -20px; right: -20px;
+            background: #008080; color: #fff; padding: 20px; border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(0,128,128,0.3); z-index: 3; text-align: center;
+        }
+        .founder-exp-badge h3 { font-size: 2rem; margin: 0; line-height: 1; }
+        .founder-exp-badge p { font-size: 0.85rem; margin: 5px 0 0 0; font-weight: 500; }
+        
+        .founder-text h2 { color: #004b87; font-size: 2.5rem; margin-bottom: 5px; }
+        .founder-text h4 { color: #008080; font-size: 1.1rem; font-weight: 500; margin-bottom: 25px; }
+        .founder-text p { font-size: 1rem; color: #555; line-height: 1.7; margin-bottom: 15px; }
+        .founder-text .quote {
+            border-left: 4px solid #008080; padding-left: 20px; font-style: italic;
+            font-size: 1.1rem; color: #004b87; font-weight: 500; margin: 30px 0;
+        }
+
+        /* 3. Mission & Vision */
+        .mv-section { padding: 80px 20px; background-color: #f4f9fc; }
+        .mv-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+        }
+        .mv-card {
+            background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
+            padding: 40px; border-radius: 20px; border: 1px solid rgba(0,128,128,0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.04); transition: transform 0.3s ease;
+        }
+        .mv-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,75,135,0.08); }
+        .mv-card .icon {
+            width: 60px; height: 60px; background: #008080; color: #fff;
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            margin-bottom: 25px;
+        }
+        .mv-card h3 { color: #004b87; font-size: 1.8rem; margin-bottom: 15px; }
+        .mv-card p { color: #555; line-height: 1.6; }
+
+        /* 4. Our Approach (Process) */
+        .process-section { padding: 100px 20px; background: #ffffff; }
+        .process-header { text-align: center; max-width: 800px; margin: 0 auto 60px auto; }
+        .process-header h2 { color: #004b87; font-size: 2.5rem; margin-bottom: 15px; }
+        .process-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;
+        }
+        .process-step { text-align: center; padding: 30px 20px; position: relative; }
+        .process-icon {
+            width: 80px; height: 80px; margin: 0 auto 20px auto;
+            background: linear-gradient(135deg, #e6f9f5 0%, #cbf0e8 100%); color: #008080;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; box-shadow: 0 10px 20px rgba(0,128,128,0.1); transition: all 0.3s;
+        }
+        .process-step:hover .process-icon {
+            background: #008080; color: #fff; transform: scale(1.1);
+        }
+        .process-step h4 { color: #004b87; font-size: 1.2rem; margin-bottom: 10px; }
+        .process-step p { color: #666; font-size: 0.9rem; line-height: 1.5; }
+
+        /* Global Animation Class */
+        .reveal-item {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal-item.visible { opacity: 1; transform: translateY(0); }
+
+        /* Responsive */
+        @media(max-width: 900px) {
+            .founder-container { grid-template-columns: 1fr; }
+            .founder-img-wrapper { max-width: 500px; margin: 0 auto 40px auto; }
+            .mv-grid { grid-template-columns: 1fr; }
+        }
+        
+        /* FOOTER STYLES (Copied from index) */
+        .footer-pro { background-color: #f4f9fc; padding: 80px 20px 0 20px; font-family: 'Poppins', sans-serif; color: #4a5568; border-top: 1px solid #e2e8f0; }
+        .footer-grid-pro { max-width: 1250px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr 1fr 1fr; gap: 40px; padding-bottom: 50px; }
+        .footer-brand { display: flex; flex-direction: column; gap: 15px; }
+        .footer-logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .footer-logo-area img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; }
+        .footer-logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .footer-logo-text span.name { font-size: 1.2rem; font-weight: 700; color: #004b87; }
+        .footer-logo-text span.sub { font-size: 0.8rem; font-weight: 500; color: #64748b; }
+        .footer-brand p { font-size: 0.9rem; line-height: 1.6; color: #4a5568; }
+        .trust-badge { display: flex; align-items: center; gap: 6px; color: #0077b6; font-size: 0.85rem; font-weight: 500; }
+        .trust-badge svg { width: 16px; height: 16px; fill: currentColor; }
+        .social-circles { display: flex; gap: 12px; }
+        .social-circles a { width: 36px; height: 36px; background-color: #0077b6; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease; }
+        .footer-col-title { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 20px; }
+        .footer-links { list-style: none; padding: 0; margin: 0 0 30px 0; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { text-decoration: none; color: #64748b; font-size: 0.9rem; transition: color 0.3s ease; }
+        .footer-links a:hover { color: #0077b6; font-weight: 500; }
+        .clinic-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
+        .clinic-item svg { width: 20px; height: 20px; color: #0077b6; flex-shrink: 0; margin-top: 2px; }
+        .clinic-info h4 { font-size: 0.9rem; font-weight: 600; color: #334155; margin: 0 0 4px 0; }
+        .clinic-info p { font-size: 0.85rem; color: #64748b; margin: 0; line-height: 1.5; }
+        .mini-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+        .mini-stat-card { border-radius: 12px; padding: 15px 10px; text-align: center; border: 1px solid rgba(0,0,0,0.03); }
+        .stat-blue { background-color: #f0f7ff; color: #0077b6; }
+        .stat-green { background-color: #f0fff4; color: #16a34a; }
+        .stat-yellow { background-color: #fffdf0; color: #d97706; }
+        .stat-purple { background-color: #faf5ff; color: #9333ea; }
+        .mini-stat-card h4 { font-size: 1.2rem; font-weight: 700; margin: 0 0 2px 0; }
+        .mini-stat-card p { font-size: 0.7rem; font-weight: 500; margin: 0; }
+        .footer-btn { display: block; width: 100%; background-color: #0077b6; color: #ffffff; text-align: center; padding: 12px; border-radius: 6px; font-weight: 600; font-size: 0.95rem; text-decoration: none; margin-bottom: 20px; }
+        .footer-contact-item { display: flex; align-items: center; gap: 10px; color: #64748b; font-size: 0.85rem; margin-bottom: 12px; }
+        .footer-contact-item svg { width: 16px; height: 16px; color: #0077b6; }
+        .footer-bottom-bar { border-top: 1px solid #e2e8f0; padding: 20px; }
+        .footer-bottom-container { max-width: 1250px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .footer-bottom-container p { font-size: 0.85rem; color: #64748b; margin: 0; }
+        @media (max-width: 1024px) { .footer-grid-pro { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 600px) { .footer-grid-pro { grid-template-columns: 1fr; gap: 30px; } .footer-bottom-container { flex-direction: column; text-align: center; } }
+    </style>
+</head>
+<body>
+
+    <div style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#ffffff; box-shadow:0 -4px 15px rgba(0,0,0,0.08); justify-content:space-around; align-items:center; padding:10px 0; z-index:9999; font-family: 'Poppins', sans-serif;" id="mobileBar">
+        <a href="https://wa.me/918051816776" target="_blank" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+    <svg style="width: 26px; height: 26px; color: #25D366;" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.405-.881-.733-1.476-1.639-1.649-1.937-.173-.298-.019-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+    </svg>
+    <span>WhatsApp</span>
+</a>
+        <a href="tel:+917488880860" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+            <svg style="width: 26px; height: 26px; color: #28a745;" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span>Call </span>
+        </a>
+        <a href="https://www.instagram.com/rimjhim_advance_chiropractic" target="_blank" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+            <svg style="width: 26px; height: 26px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/share/18TpDo9d4g/" target="_blank" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+            <svg style="width: 26px; height: 26px;" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span>Facebook</span>
+        </a>
+        <a href="https://youtube.com/@rimjhim_advance_chiropractic" target="_blank" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+            <svg style="width: 26px; height: 26px;" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span>YouTube</span>
+        </a>
+    </div>
+
+    <header style="position: fixed; top: 0; left: 0; width: 100%; background-color: #ffffff; box-shadow: 0 4px 20px rgba(0,0,0,0.06); z-index: 1000; box-sizing: border-box;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; height: 85px; box-sizing: border-box;">
+            <a href="index.html" style="display: flex; align-items: center; gap: 15px; text-decoration: none;">
+                <img src="logo.png" alt="Rimjhim Logo" style="height: 55px; width: 55px; border-radius: 50%; object-fit: cover; border: 2px solid #e6f9f5; box-shadow: 0 4px 10px rgba(0, 128, 128, 0.15);">
+                <div style="display: flex; flex-direction: column; justify-content: center; line-height: 1.2;">
+                    <span style="font-size: 1.25rem; font-weight: 700; color: #004b87; letter-spacing: 0.5px;">Rimjhim Advance</span>
+                    <span style="font-size: 0.85rem; font-weight: 600; color: #008080; text-transform: uppercase; letter-spacing: 1.5px;">Chiropractic</span>
+                </div>
+            </a>
+
+            <div id="menuBtn" class="mobile-menu-btn" onclick="toggleMenu()" style="display: none; font-size: 28px; cursor: pointer; color: #004b87; transition: transform 0.3s ease;">☰</div>
+
+            <nav id="navLinks" class="nav-links-container" style="display: flex; gap: 30px; align-items: center;">
+                <a href="index.html" style="text-decoration: none; color: #444444; font-weight: 500; font-size: 1rem; transition: color 0.3s ease;">Home</a>
+                <a href="about.html" style="text-decoration: none; color: #008080; font-weight: 700; font-size: 1rem; transition: color 0.3s ease;">About Us</a>
+                <a href="services.html" style="text-decoration: none; color: #444444; font-weight: 500; font-size: 1rem; transition: color 0.3s ease;">Services</a>
+                <a href="gallery.html" style="text-decoration: none; color: #444444; font-weight: 500; font-size: 1rem; transition: color 0.3s ease;">Gallery</a>
+                <a href="contact.html" style="text-decoration: none; color: #444444; font-weight: 500; font-size: 1rem; transition: color 0.3s ease;">Contact</a>
+            </nav>
+
+            <a href="contact.html" class="desktop-btn" style="background-color: #008080; color: #ffffff; padding: 12px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(0, 128, 128, 0.25); transition: background-color 0.3s ease;">
+                Contact Us
+            </a>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <h1 class="reveal-item">About Our Clinic</h1>
+        <p class="reveal-item" style="transition-delay: 0.1s;">Committed to restoring your body's natural alignment and providing world-class, non-surgical pain relief in India.</p>
+    </section>
+
+    <section class="founder-section">
+        <div class="founder-container">
+            <div class="founder-img-wrapper reveal-item">
+                <img src="dr.jpeg" alt="Dr. Manoj Kumar Pandit" class="founder-img">
+                <div class="founder-exp-badge">
+                    <h3>5+</h3>
+                    <p>Years of Excellence</p>
+                </div>
+            </div>
+            <div class="founder-text reveal-item" style="transition-delay: 0.2s;">
+                <h2>Dr. Manoj Kumar Pandit</h2>
+                <h4>Chief Chiropractor & Spine Specialist</h4>
+                <p>Welcome to Rimjhim Advance Chiropractic. As a premier chiropractic clinic in India, our philosophy is deeply rooted in the belief that the human body has an incredible capacity to heal itself when properly aligned.</p>
+                <p>Over the years, I have dedicated my practice to diagnosing and treating complex spinal and neuromuscular conditions. We focus on non-invasive, drug-free alternatives to surgery, ensuring our patients regain their mobility and live pain-free lives.</p>
+                <div class="quote">
+                    "True healing begins when we treat the root cause, not just the symptoms. Your spine is the pillar of your health—protect it."
+                </div>
+                <p>Our clinic combines modern chiropractic adjustments with advanced physiotherapy techniques. From severe slip discs and sciatica to chronic migraines and postural imbalances, we create a personalized healing blueprint for every single patient.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mv-section">
+        <div class="mv-grid">
+            <div class="mv-card reveal-item">
+                <div class="icon">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <h3>Our Mission</h3>
+                <p>To provide accessible, high-quality, and non-surgical chiropractic care to individuals suffering from acute and chronic pain. We aim to educate our patients about their bodies and empower them to take an active role in their long-term health and wellness journey.</p>
+            </div>
+            <div class="mv-card reveal-item" style="transition-delay: 0.2s;">
+                <div class="icon">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                </div>
+                <h3>Our Vision</h3>
+                <p>To be recognized as India's most trusted and advanced chiropractic and rehabilitation center. We envision a future where natural, structural healing is the first choice for spine and joint care, reducing the reliance on heavy medications and invasive surgeries.</p>
+            </div>
+        </div>
+    </section>
+
+
+<section class="stats-modern" id="stats">
+    <div class="stats-grid">
+        
+        <div class="stat-card">
+            <div class="stat-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5c-1.6 0-3 1.4-3 3v1"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+            </div>
+            <h2 class="stat-number">
+                <span class="counter-value" data-target="1500">1</span>+
+            </h2>
+            <p class="stat-label">Happy Patients</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+            </div>
+            <h2 class="stat-number">
+                <span class="counter-value" data-target="5">1</span>+
+            </h2>
+            <p class="stat-label">Years Experience</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+            </div>
+            <h2 class="stat-number">
+                <span class="counter-value" data-target="98">1</span>%
+            </h2>
+            <p class="stat-label">Success Rate</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+            </div>
+            <h2 class="stat-number">
+                <span class="counter-value" data-target="24">1</span><span style="font-size: 2rem;">/7</span>
+            </h2>
+            <p class="stat-label">Customer Care</p>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const statsSection = document.getElementById('stats');
+        const statCards = document.querySelectorAll('.stat-card');
+        const counters = document.querySelectorAll('.counter-value');
+        let animated = false;
+
+        // Function for the Counter Animation (1 to Target)
+        const runCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const speed = 200; // Adjust this for faster/slower counting
+                
+                const updateCount = () => {
+                    const count = +counter.innerText;
+                    const increment = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 15);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        // Scroll Observer Logic
+        const observerOptions = {
+            root: null,
+            threshold: 0.3 // Trigger when 30% of the section is visible
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Jab user scroll karke is section par pahuchega
+                if (entry.isIntersecting && !animated) {
+                    animated = true; // Taaki sirf ek baar run ho
+                    
+                    // 1. Cards ko ek-ek karke "Neeche se Upar" reveal karna (Staggered Effect)
+                    statCards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, index * 150); // Har card 150ms ke gap mein aayega
+                    });
+
+                    // 2. Numbers counting start karna slightly delay ke sath taaki reveal complete ho
+                    setTimeout(() => {
+                        runCounters();
+                    }, 300);
+
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+    });
+</script>
+
+
+<style>
+    .stats-modern {
+        background: linear-gradient(135deg, #004b87 0%, #008080 100%);
+        padding: 80px 20px;
+        position: relative;
+        overflow: hidden;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Decorative background shapes */
+    .stats-modern::before, .stats-modern::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+    }
+    .stats-modern::before { width: 300px; height: 300px; top: -100px; left: -100px; }
+    .stats-modern::after { width: 400px; height: 400px; bottom: -150px; right: -100px; }
+
+    .stats-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 30px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Glassmorphism Card Design with HIDDEN State for Scroll Animation */
+    .stat-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 40px 20px;
+        text-align: center;
+        color: #ffffff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        
+        /* CSS for the "Neeche se Upar" effect */
+        opacity: 0;
+        transform: translateY(60px);
+        transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* Active State (Triggered by JS when scrolled into view) */
+    .stat-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 20px 40px rgba(0, 75, 135, 0.4);
+    }
+
+    .stat-icon {
+        width: 55px;
+        height: 55px;
+        margin: 0 auto 15px auto;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+    }
+
+    .stat-number {
+        font-size: 3.2rem;
+        font-weight: 700;
+        margin: 0 0 5px 0;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+    }
+
+    .stat-label {
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin: 0;
+        color: #e6f9f5;
+        letter-spacing: 0.5px;
+    }
+</style>
+
+
+<style>
+    /* Section Core Styles */
+    .proof-section {
+        padding: 100px 20px;
+        background-color: #f4f9f8; /* Matches the theme's soft background */
+        font-family: 'Poppins', sans-serif;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .proof-container {
+        max-width: 1250px;
+        margin: 0 auto;
+    }
+
+    /* Section Header */
+    .proof-header {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 60px auto;
+    }
+
+    .proof-badge {
+        background-color: #e6f9f5;
+        color: #008080;
+        font-weight: 600;
+        padding: 6px 16px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        display: inline-block;
+        margin-bottom: 15px;
+    }
+
+    .proof-header h2 {
+        color: #004b87;
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin: 0 0 15px 0;
+        line-height: 1.2;
+    }
+
+    .proof-header p {
+        color: #555555;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    /* Grid Layout */
+    .proof-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 35px;
+        perspective: 1000px; /* For 3D hover effects */
+    }
+
+    /* Premium Certificate Card */
+    .proof-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 128, 128, 0.08);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        
+        /* Scroll Reveal Animation Initial State */
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+    }
+
+    /* Triggered by JS */
+    .proof-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* 3D Hover Effect */
+    .proof-card:hover {
+        transform: translateY(-12px) rotateX(2deg);
+        box-shadow: 0 25px 50px rgba(0, 75, 135, 0.15);
+        border-color: rgba(0, 128, 128, 0.2);
+    }
+
+    /* Image Wrapper */
+    .proof-image-wrapper {
+        width: 100%;
+        height: 320px;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        background: #f8f9fa; /* Light grey for contrast */
+        border: 1px solid #eeeeee;
+        margin-bottom: 20px;
+    }
+
+    .proof-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Keeps the certificate fully visible */
+        padding: 10px; /* Gives breathing room inside the box */
+        transition: transform 0.5s ease, filter 0.5s ease;
+    }
+
+    .proof-card:hover .proof-image-wrapper img {
+        transform: scale(1.05);
+    }
+
+    /* Hover Overlay (Click to View) */
+    .proof-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 75, 135, 0.7); /* Deep blue semi-transparent */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        backdrop-filter: blur(3px);
+    }
+
+    .proof-card:hover .proof-overlay {
+        opacity: 1;
+    }
+
+    .proof-overlay svg {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 10px;
+        stroke-width: 1.5;
+    }
+
+    .proof-overlay span {
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    /* Card Content */
+    .proof-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .proof-category {
+        font-size: 0.75rem;
+        color: #008080;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+
+    .proof-content h3 {
+        color: #004b87;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0 0 10px 0;
+        line-height: 1.3;
+    }
+
+    .proof-content p {
+        color: #666666;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    /* --------------------------------------------------------
+       LIGHTBOX (Image Pop-up) STYLES
+       -------------------------------------------------------- */
+    .lightbox-modal {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        padding: 20px;
+    }
+
+    .lightbox-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .lightbox-content {
+        position: relative;
+        max-width: 900px;
+        width: 100%;
+        max-height: 90vh;
+        transform: scale(0.95);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .lightbox-modal.active .lightbox-content {
+        transform: scale(1);
+    }
+
+    .lightbox-content img {
+        width: 100%;
+        max-height: 85vh;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+        background: #fff; /* In case of transparent PNGs */
+        padding: 10px;
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        background: #008080;
+        color: #fff;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        transition: background 0.3s ease;
+        z-index: 10001;
+    }
+
+    .lightbox-close:hover {
+        background: #004b87;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .proof-header h2 { font-size: 2.2rem; }
+        .proof-image-wrapper { height: 280px; }
+        .lightbox-close { top: 10px; right: 10px; }
+    }
+</style>
+
+<section class="proof-section">
+    <div class="proof-container">
+        
+        <div class="proof-header">
+            <div class="proof-badge reveal-proof">Authenticity & Trust</div>
+            <h2 class="reveal-proof" style="transition-delay: 0.1s;">Certifications & Achievements</h2>
+            <p class="reveal-proof" style="transition-delay: 0.2s;">
+                Healing requires authentic expertise. Explore the recognized diplomas, advanced master certifications, and awards earned by Dr. Manoj Kumar Pandit, demonstrating his commitment to excellence in chiropractic and bone-setting care.
+            </p>
+        </div>
+
+        <div class="proof-grid">
+            
+            <div class="proof-card reveal-proof" style="transition-delay: 0.1s;" onclick="openLightbox('1.jpg')">
+                <div class="proof-image-wrapper">
+                    <img src="1.jpg" alt="Diploma in Chiropractic Method">
+                    <div class="proof-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                        <span>View Certificate</span>
+                    </div>
+                </div>
+                <div class="proof-content">
+                    <div class="proof-category">International Diploma</div>
+                    <h3>Diploma in Chiropractic Method</h3>
+                    <p>Completed 22 credits in Chiropractic Method and Traditional Bone Setting from WEBBIC University (USA, Ghana).</p>
+                </div>
+            </div>
+
+            <div class="proof-card reveal-proof" style="transition-delay: 0.2s;" onclick="openLightbox('2.jpg')">
+                <div class="proof-image-wrapper">
+                    <img src="2.jpg" alt="Master Diploma BIAM">
+                    <div class="proof-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                        <span>View Certificate</span>
+                    </div>
+                </div>
+                <div class="proof-content">
+                    <div class="proof-category">Master Certification</div>
+                    <h3>Certified Chiropractic Extremity Practitioner</h3>
+                    <p>Awarded Master Diploma by Bodhi Institute of Alternative Medicine (BIAM), authorized under NITI Aayog guidelines.</p>
+                </div>
+            </div>
+
+            <div class="proof-card reveal-proof" style="transition-delay: 0.3s;" onclick="openLightbox('3.jpg')">
+                <div class="proof-image-wrapper">
+                    <img src="3.jpg" alt="Admirable Achiever Award">
+                    <div class="proof-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                        <span>View Award</span>
+                    </div>
+                </div>
+                <div class="proof-content">
+                    <div class="proof-category">Excellence Award</div>
+                    <h3>2026 Admirable Achiever Award</h3>
+                    <p>Recognized by WEBBIC University for outstanding expertise, exceptional clinical excellence, and dedicated service in chiropractic care.</p>
+                </div>
+            </div>
+
+            <div class="proof-card reveal-proof" style="transition-delay: 0.4s;" onclick="openLightbox('4.jpg')">
+                <div class="proof-image-wrapper">
+                    <img src="4.jpg" alt="Certificate of Participation RKM">
+                    <div class="proof-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                        <span>View Certificate</span>
+                    </div>
+                </div>
+                <div class="proof-content">
+                    <div class="proof-category">Advanced Training</div>
+                    <h3>Advanced R.K.M. Training</h3>
+                    <p>Active participation in advanced spinal manipulation, osteopathy, and peripheral techniques under Back to Nature Spine Clinic.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="lightbox-modal" id="certLightbox">
+        <div class="lightbox-content">
+            <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+            <img src="" id="lightboxImg" alt="Certificate Preview">
+        </div>
+    </div>
+</section>
+
+<script>
+    // --- Lightbox Functionality ---
+    function openLightbox(imageSrc) {
+        const modal = document.getElementById('certLightbox');
+        const img = document.getElementById('lightboxImg');
+        img.src = imageSrc;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevents background scrolling when lightbox is open
+    }
+
+    function closeLightbox() {
+        const modal = document.getElementById('certLightbox');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restores scrolling
+        // Clear image source after transition to prevent flicker on next open
+        setTimeout(() => { document.getElementById('lightboxImg').src = ""; }, 300);
+    }
+
+    // Close lightbox if user clicks outside the image (on the black background)
+    document.getElementById('certLightbox').addEventListener('click', function(e) {
+        if(e.target === this) {
+            closeLightbox();
+        }
+    });
+
+    // Close lightbox on Escape key press
+    document.addEventListener('keydown', function(e) {
+        if(e.key === "Escape") {
+            closeLightbox();
+        }
+    });
+
+    // --- Scroll Reveal Animation ---
+    document.addEventListener("DOMContentLoaded", () => {
+        const proofElements = document.querySelectorAll('.reveal-proof');
+        
+        const proofObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.15 // Triggers when 15% of the card is visible
+        });
+
+        proofElements.forEach(el => proofObserver.observe(el));
+    });
+</script>
+
+
+    <section class="process-section">
+        <div class="process-header reveal-item">
+            <h2>Our Healing Approach</h2>
+            <p>We don't just crack backs; we restore the communication between your brain and body through a systematic, 4-step holistic process.</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-step reveal-item">
+                <div class="process-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+                <h4>1. Deep Diagnosis</h4>
+                <p>Thorough physical examination, posture analysis, and medical history review to pinpoint the exact root cause.</p>
+            </div>
+            <div class="process-step reveal-item" style="transition-delay: 0.1s;">
+                <div class="process-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20"></path><line x1="9" y1="6" x2="15" y2="6"></line><line x1="8" y1="12" x2="16" y2="12"></line><line x1="9" y1="18" x2="15" y2="18"></line></svg></div>
+                <h4>2. Structural Alignment</h4>
+                <p>Precision chiropractic adjustments to correct misalignments (subluxations) and relieve nerve pressure.</p>
+            </div>
+            <div class="process-step reveal-item" style="transition-delay: 0.2s;">
+                <div class="process-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></div>
+                <h4>3. Muscle & Therapy</h4>
+                <p>Advanced myofascial release and physiotherapy to relax surrounding tissues and accelerate healing.</p>
+            </div>
+            <div class="process-step reveal-item" style="transition-delay: 0.3s;">
+                <div class="process-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12l5 5l10 -10"></path></svg></div>
+                <h4>4. Rehabilitation</h4>
+                <p>Custom posture correction exercises and lifestyle advice to ensure your pain stays away permanently.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-pro">
+        <div class="footer-grid-pro">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo-area">
+                    <img src="logo.png" alt="Rimjhim Chiropractic Logo">
+                    <div class="footer-logo-text">
+                        <span class="name">Dr. Manoj Kumar Pandit</span>
+                        <span class="sub">Spine Specialist | Chiropractor</span>
+                    </div>
+                </a>
+                <p>Revolutionary chiropractic treatments combined with advanced physiotherapy techniques. Transform your life with our personalized healing approach.</p>
+                <div class="trust-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    India's Most Trusted Chiropractic Care
+                </div>
+                <div class="social-circles" style="margin-top: 10px;">
+                    <a href="https://www.facebook.com/share/18TpDo9d4g/" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="tel:+918051816776"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
+                    <a href="https://www.instagram.com/rimjhim_advance_chiropractic" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    <a href="https://youtube.com/@rimjhim_advance_chiropractic" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                </div>
+            </div>
+
+            <div>
+                <div class="footer-col-title">Quick Links</div>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" style="color:#0077b6; font-weight:600;">About Us</a></li>
+                    <li><a href="services.html">Treatments</a></li>
+                    <li><a href="index.html#gallery">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="footer-col-title">Our Clinic</div>
+                <div class="clinic-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <div class="clinic-info">
+                        <h4>Rimjhim Advance Chiropractic</h4>
+                        <p>Sadhwara Chowk, Araila - Sadhwara Road<br>Darbhanga, Bihar 847106</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="footer-col-title">Statistics</div>
+                <div class="mini-stats-grid">
+                    <div class="mini-stat-card stat-blue"><h4>5+</h4><p>Years Exp.</p></div>
+                    <div class="mini-stat-card stat-green"><h4>98%</h4><p>Success</p></div>
+                    <div class="mini-stat-card stat-yellow"><h4>1500+</h4><p>Patients</p></div>
+                    <div class="mini-stat-card stat-purple"><h4>1</h4><p>Location</p></div>
+                </div>
+                <a href="contact.html" class="footer-btn">Contact Us</a>
+                <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> +91-8051816776</div>
+                 <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> +91-7488880860</div>
+                <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> rcmmanoj31539866@gmail.com</div>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 Rimjhim Advance Chiropractic. All rights reserved.</p>
+                <p>Designed by <a href="#" target="_blank">Mr. Satyam Kumar</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Mobile Menu Logic
+        const nav = document.getElementById("navLinks");
+        const menuBtn = document.getElementById("menuBtn");
+        
+        function toggleMenu() {
+            nav.classList.toggle("active");
+            if (nav.classList.contains("active")) {
+                menuBtn.innerHTML = "✕";
+                menuBtn.style.transform = "rotate(90deg)";
+            } else {
+                menuBtn.innerHTML = "☰";
+                menuBtn.style.transform = "rotate(0deg)";
+            }
+        }
+
+        // 2. Scroll Animation Logic
+        document.addEventListener("DOMContentLoaded", () => {
+            const revealElements = document.querySelectorAll('.reveal-item');
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, threshold: 0.15 });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+            
+            // 3. Mobile Bottom Bar Logic
+            function checkMobile() {
+                var bar = document.getElementById("mobileBar");
+                if (window.innerWidth <= 768) { bar.style.display = "flex"; } 
+                else { bar.style.display = "none"; }
+            }
+            checkMobile();
+            window.addEventListener("resize", checkMobile);
+        });
+    </script>
+</body>
+</html>

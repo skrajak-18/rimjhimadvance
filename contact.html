@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Contact Us | Rimjhim Advance Chiropractic</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <meta name="description" content="Get in touch with Rimjhim Advance Chiropractic in Bihar. Book your consultation with Dr. Manoj Kumar Pandit for non-surgical spine and joint treatments.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================================
+           GLOBAL & REUSED STYLES
+           ======================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Poppins', sans-serif; color: #444; background-color: #ffffff; overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
+
+        /* Mobile Menu Styles */
+        @media (max-width: 850px) {
+            .mobile-menu-btn { display: block !important; }
+            .desktop-btn { display: none !important; }
+            .nav-links-container {
+                position: absolute !important; top: 85px !important; left: 0 !important; width: 100% !important;
+                background: #ffffff !important; flex-direction: column !important; gap: 20px !important;
+                padding: 25px 0 !important; box-shadow: 0 10px 15px rgba(0,0,0,0.05) !important;
+                opacity: 0; visibility: hidden; transform: translateY(-15px); display: flex !important; 
+                transition: all 0.3s ease-in-out;
+            }
+            .nav-links-container.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        }
+        .nav-links-container { transition: all 0.3s ease-in-out; }
+
+        /* Global Reveal Animation */
+        .reveal-item {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal-item.visible { opacity: 1; transform: translateY(0); }
+
+        /* ========================================================
+           CONTACT PAGE SPECIFIC STYLES
+           ======================================================== */
+        /* 1. Page Hero */
+        .page-hero {
+            position: relative;
+            padding: 140px 20px 80px 20px;
+            background: linear-gradient(rgba(0, 75, 135, 0.85), rgba(0, 128, 128, 0.85)), url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            text-align: center;
+            color: #ffffff;
+        }
+        .page-hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 15px; line-height: 1.2; }
+        .page-hero p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
+
+        /* 2. Contact Section Layout */
+        .contact-section { padding: 100px 20px; background-color: #fcfdfd; }
+        .contact-container {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px;
+        }
+
+        /* Left Side: Contact Info */
+        .contact-info-wrapper h2 { color: #004b87; font-size: 2.2rem; margin-bottom: 10px; }
+        .contact-info-wrapper > p { color: #666; font-size: 1rem; margin-bottom: 40px; line-height: 1.6; }
+        
+        .info-card {
+            display: flex; align-items: flex-start; gap: 20px; margin-bottom: 30px;
+            padding: 25px; background: #ffffff; border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid rgba(0,128,128,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,75,135,0.08);
+        }
+        .info-icon {
+            width: 55px; height: 55px; background: linear-gradient(135deg, #e6f9f5 0%, #cbf0e8 100%);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: #008080; flex-shrink: 0; transition: all 0.3s ease;
+        }
+        .info-card:hover .info-icon { background: #008080; color: #ffffff; }
+        .info-icon svg { width: 24px; height: 24px; stroke-width: 2; }
+        
+        .info-details h4 { color: #004b87; font-size: 1.1rem; margin-bottom: 5px; font-weight: 600; }
+        .info-details p, .info-details a { color: #555; font-size: 0.95rem; line-height: 1.5; text-decoration: none; }
+        .info-details a:hover { color: #008080; }
+
+        /* Right Side: Contact Form */
+        .contact-form-wrapper {
+            background: #ffffff; padding: 40px; border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.03);
+        }
+        .contact-form-wrapper h3 { color: #004b87; font-size: 1.8rem; margin-bottom: 25px; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 0.9rem; color: #444; font-weight: 500; margin-bottom: 8px; }
+        .form-control {
+            width: 100%; padding: 14px 18px; border: 1px solid #e0e0e0;
+            border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 0.95rem;
+            color: #333; background: #f9fafa; transition: all 0.3s ease; outline: none;
+        }
+        .form-control:focus {
+            border-color: #008080; background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(0, 128, 128, 0.1);
+        }
+        textarea.form-control { resize: vertical; min-height: 150px; }
+        
+        .submit-btn {
+            width: 100%; padding: 15px; border: none; border-radius: 10px;
+            background: #008080; color: #ffffff; font-size: 1.05rem; font-weight: 600;
+            font-family: 'Poppins', sans-serif; cursor: pointer; transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 128, 128, 0.3);
+        }
+        .submit-btn:hover { background: #004b87; box-shadow: 0 8px 25px rgba(0, 75, 135, 0.4); transform: translateY(-2px); }
+
+        /* 3. Google Map Section */
+        .map-section { max-width: 1200px; margin: 0 auto 100px auto; padding: 0 20px; }
+        .map-container {
+            width: 100%; height: 450px; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.05);
+        }
+        .map-container iframe { width: 100%; height: 100%; border: none; }
+
+        /* Responsive */
+        @media(max-width: 992px) {
+            .contact-container { grid-template-columns: 1fr; gap: 50px; }
+            .contact-form-wrapper { padding: 30px 20px; }
+        }
+
+        /* ========================================================
+           FOOTER STYLES (Copied from Global)
+           ======================================================== */
+        .footer-pro { background-color: #f4f9fc; padding: 80px 20px 0 20px; font-family: 'Poppins', sans-serif; color: #4a5568; border-top: 1px solid #e2e8f0; }
+        .footer-grid-pro { max-width: 1250px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr 1fr 1fr; gap: 40px; padding-bottom: 50px; }
+        .footer-brand { display: flex; flex-direction: column; gap: 15px; }
+        .footer-logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .footer-logo-area img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; }
+        .footer-logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .footer-logo-text span.name { font-size: 1.2rem; font-weight: 700; color: #004b87; }
+        .footer-logo-text span.sub { font-size: 0.8rem; font-weight: 500; color: #64748b; }
+        .footer-brand p { font-size: 0.9rem; line-height: 1.6; color: #4a5568; }
+        .trust-badge { display: flex; align-items: center; gap: 6px; color: #0077b6; font-size: 0.85rem; font-weight: 500; }
+        .trust-badge svg { width: 16px; height: 16px; fill: currentColor; }
+        .social-circles { display: flex; gap: 12px; }
+        .social-circles a { width: 36px; height: 36px; background-color: #0077b6; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease; }
+        .footer-col-title { font-size: 1.1rem; font-weight: 700; color: #1e293b; margin-bottom: 20px; }
+        .footer-links { list-style: none; padding: 0; margin: 0 0 30px 0; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { text-decoration: none; color: #64748b; font-size: 0.9rem; transition: color 0.3s ease; }
+        .footer-links a:hover { color: #0077b6; font-weight: 500; }
+        .clinic-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
+        .clinic-item svg { width: 20px; height: 20px; color: #0077b6; flex-shrink: 0; margin-top: 2px; }
+        .clinic-info h4 { font-size: 0.9rem; font-weight: 600; color: #334155; margin: 0 0 4px 0; }
+        .clinic-info p { font-size: 0.85rem; color: #64748b; margin: 0; line-height: 1.5; }
+        .mini-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+        .mini-stat-card { border-radius: 12px; padding: 15px 10px; text-align: center; border: 1px solid rgba(0,0,0,0.03); }
+        .stat-blue { background-color: #f0f7ff; color: #0077b6; }
+        .stat-green { background-color: #f0fff4; color: #16a34a; }
+        .stat-yellow { background-color: #fffdf0; color: #d97706; }
+        .stat-purple { background-color: #faf5ff; color: #9333ea; }
+        .mini-stat-card h4 { font-size: 1.2rem; font-weight: 700; margin: 0 0 2px 0; }
+        .mini-stat-card p { font-size: 0.7rem; font-weight: 500; margin: 0; }
+        .footer-btn { display: block; width: 100%; background-color: #0077b6; color: #ffffff; text-align: center; padding: 12px; border-radius: 6px; font-weight: 600; font-size: 0.95rem; text-decoration: none; margin-bottom: 20px; }
+        .footer-contact-item { display: flex; align-items: center; gap: 10px; color: #64748b; font-size: 0.85rem; margin-bottom: 12px; }
+        .footer-contact-item svg { width: 16px; height: 16px; color: #0077b6; }
+        .footer-bottom-bar { border-top: 1px solid #e2e8f0; padding: 20px; }
+        .footer-bottom-container { max-width: 1250px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .footer-bottom-container p { font-size: 0.85rem; color: #64748b; margin: 0; }
+        @media (max-width: 1024px) { .footer-grid-pro { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 600px) { .footer-grid-pro { grid-template-columns: 1fr; gap: 30px; } .footer-bottom-container { flex-direction: column; text-align: center; } }
+    </style>
+</head>
+<body>
+
+    <div style="display:none; position:fixed; bottom:0; left:0; width:100%; background:#ffffff; box-shadow:0 -4px 15px rgba(0,0,0,0.08); justify-content:space-around; align-items:center; padding:10px 0; z-index:9999; font-family: 'Poppins', sans-serif;" id="mobileBar">
+       <a href="https://wa.me/918051816776" target="_blank" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+    <svg style="width: 26px; height: 26px; color: #25D366;" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.405-.881-.733-1.476-1.639-1.649-1.937-.173-.298-.019-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+    </svg>
+    <span>WhatsApp</span>
+</a>
+        <a href="tel:+917488880860" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+            <svg style="width: 26px; height: 26px; color: #28a745;" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span>Call </span>
+        </a>
+        <a href="https://www.instagram.com/rimjhim_advance_chiropractic" target="_blank" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+            <svg style="width: 26px; height: 26px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/share/18TpDo9d4g/" target="_blank" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+            <svg style="width: 26px; height: 26px;" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span>Facebook</span>
+        </a>
+        <a href="https://youtube.com/@rimjhim_advance_chiropractic" target="_blank" style="text-decoration:none; color:#555; font-size:12px; display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:500;">
+            <svg style="width: 26px; height: 26px;" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span>YouTube</span>
+        </a>
+    </div>
+
+    <header style="position: fixed; top: 0; left: 0; width: 100%; background-color: #ffffff; box-shadow: 0 4px 20px rgba(0,0,0,0.06); z-index: 1000; box-sizing: border-box;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; height: 85px; box-sizing: border-box;">
+            <a href="index.html" style="display: flex; align-items: center; gap: 15px; text-decoration: none;">
+                <img src="logo.png" alt="Rimjhim Logo" style="height: 55px; width: 55px; border-radius: 50%; object-fit: cover; border: 2px solid #e6f9f5; box-shadow: 0 4px 10px rgba(0, 128, 128, 0.15);">
+                <div style="display: flex; flex-direction: column; justify-content: center; line-height: 1.2;">
+                    <span style="font-size: 1.25rem; font-weight: 700; color: #004b87; letter-spacing: 0.5px;">Rimjhim Advance</span>
+                    <span style="font-size: 0.85rem; font-weight: 600; color: #008080; text-transform: uppercase; letter-spacing: 1.5px;">Chiropractic</span>
+                </div>
+            </a>
+
+            <div id="menuBtn" class="mobile-menu-btn" onclick="toggleMenu()" style="display: none; font-size: 28px; cursor: pointer; color: #004b87; transition: transform 0.3s ease;">☰</div>
+
+            <nav id="navLinks" class="nav-links-container" style="display: flex; gap: 30px; align-items: center;">
+                <a href="index.html" style="text-decoration: none; color: #444444; font-weight: 500; font-size: 1rem; transition: color 0.3s ease;">Home</a>
+                <a href="about.html" style="text-decoration: none; color: #444444; font-weight: 500; font-size: 1rem; transition: color 0.3s ease;">About Us</a>
+                <a href="services.html" style="text-decoration: none; color: #444444; font-weight: 500; font-size: 1rem; transition: color 0.3s ease;">Services</a>
+                <a href="gallery.html" style="text-decoration: none; color: #444444; font-weight: 500; font-size: 1rem; transition: color 0.3s ease;">Gallery</a>
+                <a href="contact.html" style="text-decoration: none; color: #008080; font-weight: 700; font-size: 1rem; transition: color 0.3s ease;">Contact</a>
+            </nav>
+
+            <a href="contact.html" class="desktop-btn" style="background-color: #008080; color: #ffffff; padding: 12px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(0, 128, 128, 0.25); transition: background-color 0.3s ease;">
+                Contact Us
+            </a>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <h1 class="reveal-item">Get in Touch</h1>
+        <p class="reveal-item" style="transition-delay: 0.1s;">Have questions or ready to book your appointment? We're here to help you take the first step toward a pain-free life.</p>
+    </section>
+
+    <section class="contact-section">
+        <div class="contact-container">
+            
+            <div class="contact-info-wrapper reveal-item">
+                <h2>Reach Out to Us</h2>
+                <p>Visit our clinic, give us a call, or send us a message. Our friendly staff is always ready to assist you with your health needs.</p>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div class="info-details">
+                        <h4>Clinic Location</h4>
+                        <p>Sadhwara Chowk, Araila - Sadhwara Road<br>Darbhanga, Bihar 847106, India</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </div>
+                    <div class="info-details">
+                        <h4>Phone Numbers</h4>
+                        <p><a href="tel:+918051816776">+91 80518 16776</a></p>
+                        <p><a href="tel:+917488880860">+91 74888 80860</a></p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </div>
+                    <div class="info-details">
+                        <h4>Email Address</h4>
+                        <p><a href="mailto:rcmmanoj31539866@gmail.com">rcmmanoj31539866@gmail.com</a></p>
+                    </div>
+                </div>
+
+                <div class="info-card" style="margin-bottom: 0;">
+                    <div class="info-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <div class="info-details">
+                        <h4>Working Hours</h4>
+                        <p>Monday - Sunday: 9:00 AM - 8:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-wrapper reveal-item" style="transition-delay: 0.2s;">
+                <h3>Send Us a Message</h3>
+                <form id="waForm" onsubmit="sendToWhatsApp(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="+91 98765 43210" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address (Optional)</label>
+                        <input type="email" id="email" class="form-control" placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Interested Service</label>
+                        <select id="service" class="form-control" required>
+                            <option value="" disabled selected>Select a treatment...</option>
+                            <option value="Spine Adjustment">Spine Adjustment</option>
+                            <option value="Slip Disc Treatment">Slip Disc Treatment</option>
+                            <option value="Sciatica Relief">Sciatica Relief</option>
+                            <option value="C.P. Child Therapy">C.P. Child Therapy</option>
+                            <option value="Other / General Consultation">Other / General Consultation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" class="form-control" placeholder="Tell us briefly about your pain or condition..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" style="background-color: #25D366; border-color: #25D366; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#ffffff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.405-.881-.733-1.476-1.639-1.649-1.937-.173-.298-.019-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                        Send on WhatsApp
+                    </button>
+                </form>
+            </div>
+            </div>
+    </section>
+
+    <script>
+        function sendToWhatsApp(event) {
+            // Form ko default reload hone se roko
+            event.preventDefault();
+            
+            // Client ke dwara di gayi saari info uthao
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value || 'Not provided';
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+
+            // WhatsApp par bhejne ke liye message ka format taiyar karo
+            // %0A ka matlab hota hai 'New Line' (Enter)
+            const whatsappMessage = `Hello Dr. Manoj Kumar Pandit!%0A%0A*New Appointment Request*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Email:* ${email}%0A*Service:* ${service}%0A*Message:* ${message}`;
+
+            // Aapka WhatsApp number yahan set kiya gaya hai
+            const whatsappNumber = "+918051816776"; 
+
+            // WhatsApp ka official link generate karo
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+            // Link ko naye tab me open karo
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+   <section class="map-section reveal-item">
+    <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.5663731114463!2d85.75784427515354!3d26.115036577130283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed95851491e37b%3A0xc32e4de11f45c9bf!2sRimjhim%20advance%20chiropractic%20sadhwara%20chowk%20araila%20%F0%9F%9B%A3%EF%B8%8F%20road%20Darbhanga%20Bihar!5e0!3m2!1sen!2sin!4v1711234567890!5m2!1sen!2sin" 
+            width="100%" 
+            height="450" 
+            style="border:0; border-radius: 15px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</section>
+
+<style>
+    .map-section {
+        padding: 80px 20px;
+        max-width: 1250px;
+        margin: 0 auto;
+    }
+
+    .map-container {
+        width: 100%;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0, 75, 135, 0.15);
+        border: 1px solid rgba(0, 128, 128, 0.1);
+        line-height: 0;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .map-section {
+            padding: 40px 15px;
+        }
+        .map-container iframe {
+            height: 350px;
+        }
+    }
+</style>
+    <footer class="footer-pro">
+        <div class="footer-grid-pro">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo-area">
+                    <img src="logo.png" alt="Rimjhim Chiropractic Logo">
+                    <div class="footer-logo-text">
+                        <span class="name">Dr. Manoj Kumar Pandit</span>
+                        <span class="sub">Spine Specialist | Chiropractor</span>
+                    </div>
+                </a>
+                <p>Revolutionary chiropractic treatments combined with advanced physiotherapy techniques. Transform your life with our personalized healing approach.</p>
+                <div class="trust-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    India's Most Trusted Chiropractic Care
+                </div>
+                <div class="social-circles" style="margin-top: 10px;">
+                    <a href="https://www.facebook.com/share/18TpDo9d4g/" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="tel:+918051816776"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
+                    <a href="https://www.instagram.com/rimjhim_advance_chiropractic" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    <a href="https://youtube.com/@rimjhim_advance_chiropractic" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                </div>
+            </div>
+
+            <div>
+                <div class="footer-col-title">Quick Links</div>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Treatments</a></li>
+                    <li><a href="index.html#gallery">Gallery</a></li>
+                    <li><a href="contact.html" style="color:#0077b6; font-weight:600;">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="footer-col-title">Our Clinic</div>
+                <div class="clinic-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <div class="clinic-info">
+                        <h4>Rimjhim Advance Chiropractic</h4>
+                        <p>Sadhwara Chowk, Araila - Sadhwara Road<br>Darbhanga, Bihar 847106</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="footer-col-title">Statistics</div>
+                <div class="mini-stats-grid">
+                    <div class="mini-stat-card stat-blue"><h4>5+</h4><p>Years Exp.</p></div>
+                    <div class="mini-stat-card stat-green"><h4>98%</h4><p>Success</p></div>
+                    <div class="mini-stat-card stat-yellow"><h4>1500+</h4><p>Patients</p></div>
+                    <div class="mini-stat-card stat-purple"><h4>1</h4><p>Location</p></div>
+                </div>
+                <a href="contact.html" class="footer-btn" style="background:#004b87;">Contact Us</a>
+                <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> +91-8051816776</div>
+                 <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> +91-7488880860</div>
+                <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> rcmmanoj31539866@gmail.com</div>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 Rimjhim Advance Chiropractic. All rights reserved.</p>
+                <p>Designed by <a href="#" target="_blank">Mr. Satyam Kumar</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Mobile Menu Logic
+        const nav = document.getElementById("navLinks");
+        const menuBtn = document.getElementById("menuBtn");
+        
+        function toggleMenu() {
+            nav.classList.toggle("active");
+            if (nav.classList.contains("active")) {
+                menuBtn.innerHTML = "✕";
+                menuBtn.style.transform = "rotate(90deg)";
+            } else {
+                menuBtn.innerHTML = "☰";
+                menuBtn.style.transform = "rotate(0deg)";
+            }
+        }
+
+        // 2. Scroll Animation Logic
+        document.addEventListener("DOMContentLoaded", () => {
+            const revealElements = document.querySelectorAll('.reveal-item');
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, threshold: 0.15 });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+            
+            // 3. Mobile Bottom Bar Logic
+            function checkMobile() {
+                var bar = document.getElementById("mobileBar");
+                if (window.innerWidth <= 768) { bar.style.display = "flex"; } 
+                else { bar.style.display = "none"; }
+            }
+            checkMobile();
+            window.addEventListener("resize", checkMobile);
+        });
+    </script>
+</body>
+</html>
